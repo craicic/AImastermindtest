@@ -1,7 +1,6 @@
 package gg.player.org;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -152,7 +151,7 @@ public class KnuthWithMinMax implements IAPlayer {
 
 	@Override
 	public String makeAGuess() {
-		clearMapsAndStuffs();
+		resetMapsAndStuff();
 		setMinimumEliminationMap();
 		setPossibleGuessesList();
 		pickTheBestGuess();
@@ -160,7 +159,7 @@ public class KnuthWithMinMax implements IAPlayer {
 		return guess;
 	}
 
-	private void clearMapsAndStuffs() {
+	private void resetMapsAndStuff() {
 		minimumEliminationMap = new HashMap<String, Integer>();
 		possibleGuessesList = new ArrayList<String>();
 	}
@@ -207,7 +206,7 @@ public class KnuthWithMinMax implements IAPlayer {
 		ArrayList<Integer> minimumEliminationSet = new ArrayList<Integer>();
 
 		for (Map.Entry<String, Integer> entry : minimumEliminationMap.entrySet()) {
-			System.out.println(entry.getKey() + "/" + entry.getValue());
+//			System.out.println(entry.getKey() + "/" + entry.getValue());
 			minimumEliminationSet.add(entry.getValue());
 		}
 		

@@ -20,8 +20,8 @@ public class Menu {
 		System.out.println("2 - Methode de Knuth sans Minimax");
 
 		Scanner scanner = new Scanner(System.in);
+		System.out.print("Choix : ");
 		int i = scanner.nextInt();
-		System.out.println(i);
 		Launcher launcher = new Launcher(i);
 		launcher.runTest();
 	}
