@@ -141,9 +141,9 @@ public class KnuthWithMinMax implements IAPlayer {
 		return minimum;
 	}
 
-	public int getTheBigger(Collection<Integer> collection) {
+	public int getTheBigger(ArrayList<Integer> list) {
 		int maximum = -1;
-		for (Integer amount : collection) {
+		for (Integer amount : list) {
 			if (amount > maximum )
 				maximum = amount;
 		}
@@ -185,8 +185,9 @@ public class KnuthWithMinMax implements IAPlayer {
 			for (String pegs : pegsList) {
 				amountOfElimitatedCodes = 0;
 				for (String scode : candidateList) {
-					if (matchWithGuess(code, scode, Integer.parseInt(pegs.substring(0, 1)),
+					if (!matchWithGuess(code, scode, Integer.parseInt(pegs.substring(0, 1)),
 							Integer.parseInt(pegs.substring(2, 3)))) {
+						System.out.println("hé salut!");
 						amountOfElimitatedCodes++;
 					}
 				}
