@@ -152,11 +152,17 @@ public class KnuthWithMinMax implements IAPlayer {
 
 	@Override
 	public String makeAGuess() {
+		clearMapsAndStuffs();
 		setMinimumEliminationMap();
 		setPossibleGuessesList();
 		pickTheBestGuess();
 		System.out.println("Nouvelle proposition : " + guess);
 		return guess;
+	}
+
+	private void clearMapsAndStuffs() {
+		minimumEliminationMap = new HashMap<String, Integer>();
+		possibleGuessesList = new ArrayList<String>();
 	}
 
 	public void createPegsList() {
@@ -185,9 +191,8 @@ public class KnuthWithMinMax implements IAPlayer {
 			for (String pegs : pegsList) {
 				amountOfElimitatedCodes = 0;
 				for (String scode : candidateList) {
-					if (!matchWithGuess(code, scode, Integer.parseInt(pegs.substring(0, 1)),
+					if (matchWithGuess(code, scode, Integer.parseInt(pegs.substring(0, 1)),
 							Integer.parseInt(pegs.substring(2, 3)))) {
-						System.out.println("hé salut!");
 						amountOfElimitatedCodes++;
 					}
 				}
