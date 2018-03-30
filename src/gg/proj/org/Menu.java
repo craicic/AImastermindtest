@@ -25,5 +25,4 @@ public class Menu {
 		Launcher launcher = new Launcher(i);
 		launcher.runTest();
 	}
-
 }

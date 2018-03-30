@@ -12,7 +12,7 @@ public class Launcher {
 	private int turnCounter;
 
 	public Launcher(int modeChoice) {
-		turnCounter = 1;
+		turnCounter = 0;
 		pl = new Player();
 		switch (modeChoice) {
 		case 1:
@@ -27,17 +27,20 @@ public class Launcher {
 	public void runTest() {
 		Configuration config = new Configuration(4, 6, 12);
 		String code = pl.initialize(config);
-		ia.initialize(config);
+		String firstguess = ia.initialize(config);
+		boolean ok = true;
 		turnCounter++;
-		while (nextTurn(code)) {
-			turnCounter++;
-		}
+		if (firstguess.equals(code))
+			ok = false;
+		while (ok && nextTurn(code)) {	}
+		
 		System.out.println("AI " + ia.getClass() + " gagne en " + turnCounter + " tour(s)");
 	}
 
 	private boolean nextTurn(String codeSolution) {
 		String guess;
 		String correction = pl.giveAnswer(turnCounter);
+		turnCounter++;
 		ia.checkMemory(correction);
 		guess = ia.makeAGuess();
 		return !guess.equals(codeSolution);

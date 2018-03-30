@@ -26,7 +26,7 @@ public class KnuthWithMinMax implements IAPlayer {
 		ListBuilder list = new ListBuilder(config);
 		candidateList = list.getList();
 		// Spécifique a WithMinMAx
-		fullCodeList = list.getList();
+		fullCodeList = new ArrayList<String>(candidateList);
 		createPegsList();
 		minimumEliminationMap = new HashMap<String, Integer>();
 		possibleGuessesList = new ArrayList<String>();
@@ -56,9 +56,10 @@ public class KnuthWithMinMax implements IAPlayer {
 			}
 		}
 		// Affichage de la liste
-		// for (String string : candidateList) {
-		// System.out.println(string);
-		// }
+		System.out.println("**** candidateList   ****");
+		for (String string : candidateList) {
+			System.out.println(string);
+		}
 	}
 
 	private boolean matchWithGuess(String guess, String code, int correct, int wellPlaced) {
@@ -125,7 +126,6 @@ public class KnuthWithMinMax implements IAPlayer {
 		return map;
 	}
 
-
 	public int getTheLesser(int a, int b) {
 		return (a > b) ? b : a;
 	}
@@ -143,7 +143,7 @@ public class KnuthWithMinMax implements IAPlayer {
 	public int getTheBigger(ArrayList<Integer> list) {
 		int maximum = -1;
 		for (Integer amount : list) {
-			if (amount > maximum )
+			if (amount > maximum)
 				maximum = amount;
 		}
 		return maximum;
@@ -160,8 +160,10 @@ public class KnuthWithMinMax implements IAPlayer {
 	}
 
 	private void resetMapsAndStuff() {
-		minimumEliminationMap = new HashMap<String, Integer>();
-		possibleGuessesList = new ArrayList<String>();
+		// minimumEliminationMap = new HashMap<String, Integer>();
+		// possibleGuessesList = new ArrayList<String>();
+		minimumEliminationMap.clear();
+		possibleGuessesList.clear();
 	}
 
 	public void createPegsList() {
@@ -174,14 +176,15 @@ public class KnuthWithMinMax implements IAPlayer {
 					pegsList.add(index, i + " " + j);
 					index++;
 				}
-		pegsList.remove("0 "+config.getNumberDigits());
-		
-		for (String string : pegsList) {
-			System.out.println(string);
-		}
+		pegsList.remove("0 " + config.getNumberDigits());
+		// affiche pegs liste
+		// for (String string : pegsList) {
+		// System.out.println(string);
+		// }
 	}
 
 	public void setMinimumEliminationMap() {
+
 		int amountOfElimitatedCodes = 0;
 		ArrayList<Integer> listOfAmounts = new ArrayList<Integer>();
 		// suppression du dernier guess
@@ -190,7 +193,7 @@ public class KnuthWithMinMax implements IAPlayer {
 			for (String pegs : pegsList) {
 				amountOfElimitatedCodes = 0;
 				for (String scode : candidateList) {
-					if (matchWithGuess(code, scode, Integer.parseInt(pegs.substring(0, 1)),
+					if (!matchWithGuess(code, scode, Integer.parseInt(pegs.substring(0, 1)),
 							Integer.parseInt(pegs.substring(2, 3)))) {
 						amountOfElimitatedCodes++;
 					}
@@ -198,35 +201,52 @@ public class KnuthWithMinMax implements IAPlayer {
 				listOfAmounts.add(amountOfElimitatedCodes);
 			}
 			minimumEliminationMap.put(code, getTheLesser(listOfAmounts));
+			listOfAmounts.clear();
 		}
 	}
 
 	public void setPossibleGuessesList() {
 		int minimax = 0;
-		ArrayList<Integer> minimumEliminationSet = new ArrayList<Integer>();
+		ArrayList<Integer> minimumEliminationList = new ArrayList<Integer>();
 
 		for (Map.Entry<String, Integer> entry : minimumEliminationMap.entrySet()) {
-//			System.out.println(entry.getKey() + "/" + entry.getValue());
-			minimumEliminationSet.add(entry.getValue());
+			// System.out.println(entry.getKey() + "/" + entry.getValue());
+			minimumEliminationList.add(entry.getValue());
 		}
-		
-		minimax = getTheBigger(minimumEliminationSet);
-		
+		// minimumEliminationSet = new
+		// ArrayList<Integer>(minimumEliminationMap.values());
+
+		minimax = getTheBigger(minimumEliminationList);
+
 		for (Map.Entry<String, Integer> entry : minimumEliminationMap.entrySet()) {
-			if(entry.getValue() == minimax)
+			if (entry.getValue() == minimax)
 				possibleGuessesList.add(entry.getKey());
 		}
 	}
-	
+
 	public void pickTheBestGuess() {
-		ArrayList<String> markedAsPlayableGuess = new ArrayList<String>();
+		ArrayList<String> bestGuessesList = new ArrayList<String>();
 		for (String code : possibleGuessesList) {
-			if (candidateList.contains(code))
-				markedAsPlayableGuess.add(code);
+			if (candidateList.contains(code)) {
+				bestGuessesList.add(code);
+//				System.out.println("a solution from the candidate list will be played");
+			}
 		}
-		if (markedAsPlayableGuess.isEmpty()) {
-			markedAsPlayableGuess = possibleGuessesList;
+		if (bestGuessesList.isEmpty()) {
+			bestGuessesList = new ArrayList<String>(possibleGuessesList);
+//			System.out.println("a solution from full code list will be played");
 		}
-		guess = possibleGuessesList.get(0);
+
+//		System.out.println("**** possibleList ****");
+//		for (String string : possibleGuessesList) {
+//			System.out.println(string);
+//		}
+		System.out.println("**** minimaxedList ****");
+		for (String string : bestGuessesList) {
+			System.out.println(string);
+		}
+		// erreur
+		// guess = possibleGuessesList.get(0);
+		guess = bestGuessesList.get(0);
 	}
 }
