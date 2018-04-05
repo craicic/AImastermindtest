@@ -11,9 +11,7 @@ public class ListBuilder {
 		String combination = "";
 		int numberOfCombination = (int) Math.pow(config.getNumberColors(), config.getNumberDigits());
 		String blank = "";
-		String lastCombination = "";
 
-		ArrayList<String> genericList = new ArrayList<String>();
 		candidateList = new ArrayList<String>();
 
 		for (int i = 0; i < config.getNumberDigits(); i++)

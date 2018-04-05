@@ -18,11 +18,17 @@ public class Menu {
 		System.out.println("");
 		System.out.println("1 - Methode de Knuth avec Minimax");
 		System.out.println("2 - Methode de Knuth sans Minimax");
-
+		System.out.println("3 - Calcule du nombre de tour moyen avec Minimax");
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Choix : ");
 		int i = scanner.nextInt();
-		Launcher launcher = new Launcher(i);
-		launcher.runTest();
+		if (i != 3) {
+			Launcher launcher = new Launcher(i);
+			launcher.runTest();
+
+		} if (i == 3) {
+			MultipleGamesLauncher mgl = new MultipleGamesLauncher();
+			mgl.runTest(100);
+		}
 	}
 }
