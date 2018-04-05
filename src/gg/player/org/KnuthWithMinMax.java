@@ -56,10 +56,10 @@ public class KnuthWithMinMax implements IAPlayer {
 			}
 		}
 		// Affichage de la liste
-		System.out.println("**** candidateList   ****");
-		for (String string : candidateList) {
-			System.out.println(string);
-		}
+//		System.out.println("**** candidateList   ****");
+//		for (String string : candidateList) {
+//			System.out.println(string);
+//		}
 	}
 
 	private boolean matchWithGuess(String guess, String code, int correct, int wellPlaced) {
@@ -241,10 +241,10 @@ public class KnuthWithMinMax implements IAPlayer {
 //		for (String string : possibleGuessesList) {
 //			System.out.println(string);
 //		}
-		System.out.println("**** minimaxedList ****");
-		for (String string : bestGuessesList) {
-			System.out.println(string);
-		}
+//		System.out.println("**** minimaxedList ****");
+//		for (String string : bestGuessesList) {
+//			System.out.println(string);
+//		}
 		// erreur
 		// guess = possibleGuessesList.get(0);
 		guess = bestGuessesList.get(0);

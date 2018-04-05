@@ -28,7 +28,9 @@ public class Menu {
 
 		} if (i == 3) {
 			MultipleGamesLauncher mgl = new MultipleGamesLauncher();
-			mgl.runTest(100);
+			mgl.runTest();
+			mgl.analyseData();
+			mgl.displayResult();
 		}
 	}
 }
