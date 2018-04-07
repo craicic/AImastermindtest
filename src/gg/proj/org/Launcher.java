@@ -25,7 +25,7 @@ public class Launcher {
 	}
 
 	public void runTest() {
-		Configuration config = new Configuration(4, 6, 12);
+		Configuration config = new Configuration(3, 5, 12);
 		String code = pl.initialize(config);
 		String firstguess = ia.initialize(config);
 		boolean ok = true;

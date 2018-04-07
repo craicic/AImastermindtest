@@ -9,7 +9,7 @@ public class MultipleGamesLauncher {
 	private double averageGameLength;
 
 	public MultipleGamesLauncher() {
-		config = new Configuration(3, 3, 12);
+		config = new Configuration(3, 5, 12);
 		numberOfTurnsList = new ArrayList<Integer>();
 		averageGameLength = 0;
 	}
