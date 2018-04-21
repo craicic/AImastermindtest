@@ -57,6 +57,18 @@ public class KnuthWithNoMinMax implements AIPlayer {
 		// }
 	}
 
+	@Override
+		public String makeAGuess() {
+			Random random = new Random();
+	//		System.out.println("rand : " + random.nextInt(candidateList.size()));
+	//		System.out.println("list : " + candidateList.size());
+			guess = candidateList.get(random.nextInt(candidateList.size()));
+			// Une autre méthode consiste à prendre simplement le premier code de la liste
+			// guess = candidateList.get(0);
+			System.out.println("Nouvelle proposition : " + guess);
+			return guess;
+		}
+
 	private boolean matchWithCorrection(String guess, String code, int correct, int wellPlaced) {
 
 		int areWellPlaced = 0;
@@ -109,7 +121,7 @@ public class KnuthWithNoMinMax implements AIPlayer {
 		return ((areCorrect == correct) && (areWellPlaced == wellPlaced));
 	}
 
-	public Map<Character, Integer> createMap(String str) {
+	private Map<Character, Integer> createMap(String str) {
 		Map<Character, Integer> map = new HashMap<>();
 		for (int i = 0; i < config.getNumberDigits(); i++) {
 			if (!map.containsKey(str.charAt(i))) {
@@ -121,19 +133,7 @@ public class KnuthWithNoMinMax implements AIPlayer {
 		return map;
 	}
 
-	public int getTheLesser(int a, int b) {
+	private int getTheLesser(int a, int b) {
 		return (a > b) ? b : a;
-	}
-
-	@Override
-	public String makeAGuess() {
-		Random random = new Random();
-//		System.out.println("rand : " + random.nextInt(candidateList.size()));
-//		System.out.println("list : " + candidateList.size());
-		guess = candidateList.get(random.nextInt(candidateList.size()));
-		// Une autre méthode consiste à prendre simplement le premier code de la liste
-		// guess = candidateList.get(0);
-		System.out.println("Nouvelle proposition : " + guess);
-		return guess;
 	}
 }

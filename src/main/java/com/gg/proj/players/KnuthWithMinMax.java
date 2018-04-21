@@ -70,6 +70,16 @@ public class KnuthWithMinMax implements AIPlayer {
 //		}
 	}
 
+	@Override
+	public String makeAGuess() {
+		resetMapsAndStuff();
+		setMinimumEliminationMap();
+		setPossibleGuessesList();
+		pickTheBestGuess();
+		System.out.println("Nouvelle proposition : " + guess);
+		return guess;
+	}
+
 	private boolean matchWithGuess(String guess, String code, int correct, int wellPlaced) {
 
 		int areWellPlaced = 0;
@@ -106,7 +116,7 @@ public class KnuthWithMinMax implements AIPlayer {
 		return ((areCorrect == correct) && (areWellPlaced == wellPlaced));
 	}
 
-	public Map<Character, Integer> createMap(String str) {
+	private Map<Character, Integer> createMap(String str) {
 		Map<Character, Integer> map = new HashMap<>();
 		for (int i = 0; i < config.getNumberDigits(); i++) {
 			if (!map.containsKey(str.charAt(i))) {
@@ -118,11 +128,11 @@ public class KnuthWithMinMax implements AIPlayer {
 		return map;
 	}
 
-	public int getTheLesser(int a, int b) {
+	private int getTheLesser(int a, int b) {
 		return (a > b) ? b : a;
 	}
 
-	public int getTheLesser(ArrayList<Integer> list) {
+	private int getTheLesser(ArrayList<Integer> list) {
 		// minimum très grand
 		int minimum = 10000;
 		for (Integer amount : list) {
@@ -132,23 +142,13 @@ public class KnuthWithMinMax implements AIPlayer {
 		return minimum;
 	}
 
-	public int getTheBigger(ArrayList<Integer> list) {
+	private int getTheBigger(ArrayList<Integer> list) {
 		int maximum = -1;
 		for (Integer amount : list) {
 			if (amount > maximum)
 				maximum = amount;
 		}
 		return maximum;
-	}
-
-	@Override
-	public String makeAGuess() {
-		resetMapsAndStuff();
-		setMinimumEliminationMap();
-		setPossibleGuessesList();
-		pickTheBestGuess();
-		System.out.println("Nouvelle proposition : " + guess);
-		return guess;
 	}
 
 	private void resetMapsAndStuff() {
@@ -158,7 +158,7 @@ public class KnuthWithMinMax implements AIPlayer {
 		possibleGuessesList.clear();
 	}
 
-	public void createPegsList() {
+	private void createPegsList() {
 
 		int index = 0;
 		pegsList = new ArrayList<String>();
@@ -175,7 +175,7 @@ public class KnuthWithMinMax implements AIPlayer {
 		// }
 	}
 
-	public void setMinimumEliminationMap() {
+	private void setMinimumEliminationMap() {
 
 		int amountOfElimitatedCodes = 0;
 		ArrayList<Integer> listOfAmounts = new ArrayList<Integer>();
@@ -197,7 +197,7 @@ public class KnuthWithMinMax implements AIPlayer {
 		}
 	}
 
-	public void setPossibleGuessesList() {
+	private void setPossibleGuessesList() {
 		int minimax = 0;
 		ArrayList<Integer> minimumEliminationList = new ArrayList<Integer>();
 
@@ -216,7 +216,7 @@ public class KnuthWithMinMax implements AIPlayer {
 		}
 	}
 
-	public void pickTheBestGuess() {
+	private void pickTheBestGuess() {
 		ArrayList<String> bestGuessesList = new ArrayList<String>();
 		for (String code : possibleGuessesList) {
 			if (candidateList.contains(code)) {

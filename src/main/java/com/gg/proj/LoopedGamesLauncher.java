@@ -10,13 +10,12 @@ public class LoopedGamesLauncher {
 	
 
 	public LoopedGamesLauncher() {
-		config = new Configuration(3, 8, 12);
+		config = new Configuration(4, 6, 12);
 		numberOfTurnsList = new ArrayList<Integer>();
 		averageGameLength = 0;
 	}
 
 	public void runTest(int param) {
-
 		ListBuilder lb = new ListBuilder(config);
 		ArrayList<String> fullCodeList = lb.getList();
 
@@ -39,8 +38,6 @@ public class LoopedGamesLauncher {
 	}
 
 	public void displayResult() {
-
 		System.out.println("Nombre de tours moyen : " + averageGameLength);
 	}
-
 }
