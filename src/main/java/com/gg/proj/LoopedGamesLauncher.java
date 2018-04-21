@@ -7,6 +7,7 @@ public class LoopedGamesLauncher {
 	private Configuration config;
 	private ArrayList<Integer> numberOfTurnsList;
 	private double averageGameLength;
+	
 
 	public LoopedGamesLauncher() {
 		config = new Configuration(3, 8, 12);
@@ -14,18 +15,17 @@ public class LoopedGamesLauncher {
 		averageGameLength = 0;
 	}
 
-	public void runTest() {
+	public void runTest(int param) {
 
 		ListBuilder lb = new ListBuilder(config);
 		ArrayList<String> fullCodeList = lb.getList();
 
 		for (String solutionCode : fullCodeList) {
 			AutomatedGame ag = new AutomatedGame(solutionCode, config);
-			ag.runGame();
+			ag.runGame(param);
 			numberOfTurnsList.add(ag.getTurnCounter());
 			System.out.println(ag.toString());
 		}
-
 	}
 
 	public void analyseData() {

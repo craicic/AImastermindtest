@@ -29,7 +29,8 @@ public class Menu {
 		System.out.println("");
 		System.out.println("1 - Methode de Knuth avec Minimax");
 		System.out.println("2 - Methode de Knuth sans Minimax");
-		System.out.println("3 - Calcul du nombre de tour moyen avec Minimax");
+		System.out.println("3 - Calcul du nombre de tour moyen sans Minimax");
+		System.out.println("4 - Calcul du nombre de tour moyen avec Minimax");
 		System.out.print("Choix : ");
 	}
 }

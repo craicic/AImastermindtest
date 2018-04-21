@@ -13,7 +13,7 @@ public class Main {
 		while (!ok) {
 			try {
 				param = menu.getMenuChoice();
-				if (param > 0 && param < 4)
+				if (param > 0 && param < 5)
 					ok = true;
 				else throw new IllegalArgumentException("veuillez saisir un nombre entre 1 et 3") ;
 			} catch (IllegalArgumentException e) {
@@ -23,14 +23,14 @@ public class Main {
 			}
 		}
 
-		if (param != 3) {
+		if (param > 0 && param < 3) {
 			Launcher launcher = new Launcher(param);
 			launcher.runTest();
-		} else if (param == 3) {
-			LoopedGamesLauncher mgl = new LoopedGamesLauncher();
-			mgl.runTest();
-			mgl.analyseData();
-			mgl.displayResult();
+		} else if (param > 2 && param < 5) {
+			LoopedGamesLauncher loopedGamesLauncher = new LoopedGamesLauncher();
+			loopedGamesLauncher.runTest(param);
+			loopedGamesLauncher.analyseData();
+			loopedGamesLauncher.displayResult();
 		}
 
 	}

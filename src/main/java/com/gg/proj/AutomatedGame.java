@@ -3,13 +3,16 @@ package com.gg.proj;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.gg.proj.players.AIPlayer;
 import com.gg.proj.players.KnuthWithMinMax;
+import com.gg.proj.players.KnuthWithNoMinMax;
 
 public class AutomatedGame {
 
 	String solutionCode;
 	Configuration config;
 	int turnCounter;
+	private AIPlayer aiPlayer;
 	
 	public AutomatedGame(String solutionCode, Configuration config) {
 		this.solutionCode = solutionCode;
@@ -17,16 +20,19 @@ public class AutomatedGame {
 		turnCounter = 0;
 	}
 
-	public void runGame() {
+	public void runGame(int param) {
 		String guess;
 		String correction;
-		KnuthWithMinMax knuth = new KnuthWithMinMax();
-		guess = knuth.initialize(config);
+		if (param == 3)
+			aiPlayer = new KnuthWithNoMinMax();
+		else
+			aiPlayer = new KnuthWithMinMax();
+		guess = aiPlayer.initialize(config);
 		turnCounter++;
 		while(!guess.equals(solutionCode)) {
 			correction = AutomatedGame.Corrector(guess, solutionCode);
-			knuth.checkMemory(correction);
-			guess = knuth.makeAGuess();
+			aiPlayer.checkMemory(correction);
+			guess = aiPlayer.makeAGuess();
 			turnCounter++;
 		}
 	}
