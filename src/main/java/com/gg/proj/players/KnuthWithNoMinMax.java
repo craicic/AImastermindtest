@@ -1,4 +1,4 @@
-package gg.player.org;
+package com.gg.proj.players;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,15 +6,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
-import gg.proj.org.Configuration;
-import gg.proj.org.ListBuilder;
+import com.gg.proj.Configuration;
+import com.gg.proj.ListBuilder;
 
 public class KnuthWithNoMinMax implements IAPlayer {
-	private Configuration config;	
+	private Configuration config;
 	private String guess;
 	private ArrayList<String> candidateList;
-
-
 
 	@Override
 	public String initialize(Configuration config) {
@@ -46,6 +44,13 @@ public class KnuthWithNoMinMax implements IAPlayer {
 				iter.remove();
 			}
 		}
+
+		
+//		Stream<String> ss = candidateList.stream();
+//
+//		List<String> result = ss.filter(x -> matchWithCorrection(guess, x, correct, wellPlaced)).collect(Collectors.toList());
+//		candidateList = (ArrayList<String>) result;
+		
 		// Affichage de la liste
 		// for (String string : candidateList) {
 		// System.out.println(string);

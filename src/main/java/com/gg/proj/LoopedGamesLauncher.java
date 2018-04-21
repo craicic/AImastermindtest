@@ -1,15 +1,15 @@
-package gg.proj.org;
+package com.gg.proj;
 
 import java.util.ArrayList;
 
-public class MultipleGamesLauncher {
+public class LoopedGamesLauncher {
 
 	private Configuration config;
 	private ArrayList<Integer> numberOfTurnsList;
 	private double averageGameLength;
 
-	public MultipleGamesLauncher() {
-		config = new Configuration(3, 5, 12);
+	public LoopedGamesLauncher() {
+		config = new Configuration(3, 8, 12);
 		numberOfTurnsList = new ArrayList<Integer>();
 		averageGameLength = 0;
 	}
@@ -40,7 +40,7 @@ public class MultipleGamesLauncher {
 
 	public void displayResult() {
 
-		System.out.println("Average nb Turn : " + averageGameLength);
+		System.out.println("Nombre de tours moyen : " + averageGameLength);
 	}
 
 }

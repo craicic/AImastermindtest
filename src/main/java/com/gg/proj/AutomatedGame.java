@@ -1,9 +1,9 @@
-package gg.proj.org;
+package com.gg.proj;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import gg.player.org.KnuthWithMinMax;
+import com.gg.proj.players.KnuthWithMinMax;
 
 public class AutomatedGame {
 

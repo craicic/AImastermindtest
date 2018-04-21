@@ -1,9 +1,9 @@
-package gg.proj.org;
+package com.gg.proj;
 
-import gg.player.org.IAPlayer;
-import gg.player.org.KnuthWithNoMinMax;
-import gg.player.org.KnuthWithMinMax;
-import gg.player.org.Player;
+import com.gg.proj.players.IAPlayer;
+import com.gg.proj.players.KnuthWithMinMax;
+import com.gg.proj.players.KnuthWithNoMinMax;
+import com.gg.proj.players.Player;
 
 public class Launcher {
 
@@ -25,7 +25,7 @@ public class Launcher {
 	}
 
 	public void runTest() {
-		Configuration config = new Configuration(3, 5, 12);
+		Configuration config = new Configuration(4, 6, 12);
 		String code = pl.initialize(config);
 		String firstguess = ia.initialize(config);
 		boolean ok = true;
@@ -38,10 +38,14 @@ public class Launcher {
 	}
 
 	private boolean nextTurn(String codeSolution) {
+		
 		String guess;
 		String correction = pl.giveAnswer(turnCounter);
 		turnCounter++;
+		long timeStart = System.currentTimeMillis();
 		ia.checkMemory(correction);
+		long timeEstimated = System.currentTimeMillis() - timeStart;
+		System.out.println(timeEstimated);
 		guess = ia.makeAGuess();
 		return !guess.equals(codeSolution);
 	}

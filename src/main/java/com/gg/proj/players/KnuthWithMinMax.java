@@ -1,12 +1,12 @@
-package gg.player.org;
+package com.gg.proj.players;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import gg.proj.org.Configuration;
-import gg.proj.org.ListBuilder;
+import com.gg.proj.Configuration;
+import com.gg.proj.ListBuilder;
 
 public class KnuthWithMinMax implements IAPlayer {
 
@@ -55,6 +55,14 @@ public class KnuthWithMinMax implements IAPlayer {
 				iter.remove();
 			}
 		}
+		
+		// Methode stream (plus longue : 75ms contre 8-9ms)
+//		Stream<String> ss = candidateList.stream();
+//
+//		List<String> result = ss.filter(x -> matchWithGuess(guess, x, correct, wellPlaced)).collect(Collectors.toList());
+//		candidateList = (ArrayList<String>) result;
+//		
+		
 		// Affichage de la liste
 //		System.out.println("**** candidateList   ****");
 //		for (String string : candidateList) {
@@ -82,33 +90,17 @@ public class KnuthWithMinMax implements IAPlayer {
 			}
 		}
 
-		/*
-		 * Creation d'une map du qui associe chiffre et occurence du chiffre [
-		 * 0,1,1,1,2,0] devient l'ensemble (clé,valeur) (0,2)(1,3)(2,1)
-		 * 
-		 */
+
 		guessMap = this.createMap(guess);
 		candidateCodeMap = this.createMap(code);
 
-		/*
-		 * On test chaque entrée de la map solution Si on retrouve un chiffre en commun
-		 * on va chercher les valeurs associés on garde la plus petite des deux valeur
-		 * (qui correspond au nombre de correspondances solution / proposition)
-		 * 
-		 */
+
 		for (Map.Entry<Character, Integer> entry : guessMap.entrySet()) {
 			if (candidateCodeMap.containsKey(entry.getKey())) {
 				areCorrect += getTheLesser(candidateCodeMap.get(entry.getKey()), entry.getValue());
 			}
 		}
 
-		/*
-		 * La boucle si dessus nous a renvoyé tout le nombre de chiffre present dans les
-		 * deux solutions, il faut les distingué des valeurs bien placé, déterminée plus
-		 * haut [0,0,0,2] [4,4,0,0] (0,3) (0,2)
-		 * 
-		 * nombres presents... ... la plus petite des deux valeur 2
-		 */
 		areCorrect -= areWellPlaced;
 
 		return ((areCorrect == correct) && (areWellPlaced == wellPlaced));

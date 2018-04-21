@@ -1,4 +1,4 @@
-package gg.proj.org;
+package com.gg.proj;
 
 public class Configuration {
 	private int numberDigits;

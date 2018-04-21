@@ -1,8 +1,8 @@
-package gg.player.org;
+package com.gg.proj.players;
 
 import java.util.Scanner;
 
-import gg.proj.org.Configuration;
+import com.gg.proj.Configuration;
 
 public class Player {
 	public String giveAnswer(int turnCounter) {

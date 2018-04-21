@@ -1,6 +1,6 @@
-package gg.player.org;
+package com.gg.proj.players;
 
-import gg.proj.org.Configuration;
+import com.gg.proj.Configuration;
 
 public interface IAPlayer {
 

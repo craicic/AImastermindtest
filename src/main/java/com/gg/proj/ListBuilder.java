@@ -1,4 +1,4 @@
-package gg.proj.org;
+package com.gg.proj;
 
 import java.util.ArrayList;
 
