@@ -9,7 +9,7 @@ import java.util.Random;
 import com.gg.proj.Configuration;
 import com.gg.proj.ListBuilder;
 
-public class KnuthWithNoMinMax implements IAPlayer {
+public class KnuthWithNoMinMax implements AIPlayer {
 	private Configuration config;
 	private String guess;
 	private ArrayList<String> candidateList;
@@ -128,8 +128,8 @@ public class KnuthWithNoMinMax implements IAPlayer {
 	@Override
 	public String makeAGuess() {
 		Random random = new Random();
-		System.out.println("rand : " + random.nextInt(candidateList.size()));
-		System.out.println("list : " + candidateList.size());
+//		System.out.println("rand : " + random.nextInt(candidateList.size()));
+//		System.out.println("list : " + candidateList.size());
 		guess = candidateList.get(random.nextInt(candidateList.size()));
 		// Une autre méthode consiste à prendre simplement le premier code de la liste
 		// guess = candidateList.get(0);

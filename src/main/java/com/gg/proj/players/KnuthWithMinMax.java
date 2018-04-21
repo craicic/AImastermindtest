@@ -8,7 +8,7 @@ import java.util.Map;
 import com.gg.proj.Configuration;
 import com.gg.proj.ListBuilder;
 
-public class KnuthWithMinMax implements IAPlayer {
+public class KnuthWithMinMax implements AIPlayer {
 
 	private Configuration config;
 	private String guess;

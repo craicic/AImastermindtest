@@ -2,7 +2,7 @@ package com.gg.proj.players;
 
 import com.gg.proj.Configuration;
 
-public interface IAPlayer {
+public interface AIPlayer {
 
 	abstract String initialize(Configuration config);
 
